@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useVoteControl } from '@/api/AdminControl.api';
@@ -16,7 +16,7 @@ export default function AdminControl() {
   const [status, setStatus] = useState<Status>('OFF');
   const voteMutation = useVoteControl();
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setStatus(e.target.value as Status);
   };
 

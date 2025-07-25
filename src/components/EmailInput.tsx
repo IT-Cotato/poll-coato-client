@@ -1,4 +1,8 @@
-import React from 'react';
+import {
+  type Dispatch,
+  type SetStateAction,
+  type MouseEventHandler,
+} from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -9,8 +13,8 @@ export default function EmailInput({
   onSubmit,
 }: {
   email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  onSubmit: React.MouseEventHandler<HTMLButtonElement>;
+  setEmail: Dispatch<SetStateAction<string>>;
+  onSubmit: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <Card className="border-2 w-1/2 mx-auto border-primary/10 shadow-sm">

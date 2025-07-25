@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Loader2, Save } from 'lucide-react';
-import React, { useState } from 'react';
+import { useState, type FormEvent, type ChangeEvent } from 'react';
 
 export default function AdminScore() {
   // 더미 데이터
@@ -47,7 +47,7 @@ export default function AdminScore() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsPending(true);
     setTimeout(() => setIsPending(false), 1000); // 더미 저장
@@ -101,9 +101,7 @@ export default function AdminScore() {
                             placeholder="0"
                             className="w-full text-center"
                             value={scores[key]?.[idx]?.[team.id] || ''}
-                            onChange={(
-                              e: React.ChangeEvent<HTMLInputElement>,
-                            ) =>
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
                               handleScoreChange(
                                 key,
                                 idx,
