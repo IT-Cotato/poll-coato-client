@@ -39,4 +39,4 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/poll-coato-client:latest
             docker stop poll-coato-client || true
             docker rm poll-coato-client || true
-            docker run -d --name poll-coato-client -p 4173:4173 ${{ secrets.DOCKERHUB_USERNAME }}/poll-coato-client:latest 
+            docker run -d --name poll-coato-client -p 4173:5173 ${{ secrets.DOCKERHUB_USERNAME }}/poll-coato-client:latest 
