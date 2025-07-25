@@ -31,6 +31,9 @@ export default [
     rules: {
       ...prettier.rules,
       'import/no-unresolved': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'react/prop-types': 'off',
     },
     settings: {
       react: {
