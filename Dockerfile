@@ -15,7 +15,8 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY --from=builder /app/package.json /app/package-lock.json ./
-RUN npm ci --omit=dev
+RUN npm ci --only=production
+RUN npm install vite
 
 COPY --from=builder /app/dist ./dist
 
