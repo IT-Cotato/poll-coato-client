@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLogin } from '@/api/Login.api';
 import { PATH } from '@/route/path';
 
@@ -10,20 +10,13 @@ import logo from '@/assets/감직이.svg';
 import EmailInput from '@/components/EmailInput';
 
 export default function Home() {
-  // const [searchParams] = useSearchParams();
   const loginMutation = useLogin();
   const [email, setEmail] = useState('');
 
-  // useEffect(() => {
-  //   const email = searchParams.get('email');
-  //   const sessionKey = searchParams.get('sessionKey');
-  //   const pollIdStr = searchParams.get('pollId');
-  //   const pollId = pollIdStr ? Number(pollIdStr) : 1;
-  // }, [searchParams, loginMutation]);
-
-  if (email) {
+  const handleEmailSubmit = () => {
     loginMutation.mutate(email);
-  }
+  };
+
   const role = localStorage.getItem('role');
 
   return (
@@ -35,13 +28,20 @@ export default function Home() {
           </div>
           <h2 className="text-4xl font-bold text-secondary mb-4">POLLTATO</h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            COKERTHON 부원 투표를 진행하는 플랫폼입니다. 6번째 코테이토 해커톤에
-            참여하신 모두 고생많으셨습니다!
+            COKERTHON 부원 투표를 진행하는 플랫폼입니다.
+            <br />
+            6번째 코테이토 해커톤에 참여하신 모두 고생많으셨습니다!
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {!email && <EmailInput email={email} setEmail={setEmail} />}
+        <div className="flex flex-col gap-8 max-w-4xl mx-auto">
+          {role === null && (
+            <EmailInput
+              email={email}
+              setEmail={setEmail}
+              onSubmit={handleEmailSubmit}
+            />
+          )}
           {role === 'ADMIN' && (
             <Card className="border-2 border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
               <CardContent className="p-8">
@@ -62,7 +62,7 @@ export default function Home() {
               </CardContent>
             </Card>
           )}
-          {role === 'USER' && (
+          {role === 'MEMBER' && (
             <Card className="border-2 border-primary/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
               <CardContent className="p-8">
                 <div className="w-16 h-16 gradient-primary rounded-xl flex items-center justify-center mx-auto mb-4">

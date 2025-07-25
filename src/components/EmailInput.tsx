@@ -6,14 +6,16 @@ import { Label } from '@/components/ui/label';
 export default function EmailInput({
   email,
   setEmail,
+  onSubmit,
 }: {
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
+  onSubmit: React.MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
-    <Card className="border-2 border-primary/10 shadow-sm">
+    <Card className="border-2 w-1/2 mx-auto border-primary/10 shadow-sm">
       <CardContent className="p-8">
-        <form className="space-y-6">
+        <div className="space-y-6">
           <div>
             <Label
               htmlFor="email"
@@ -30,15 +32,21 @@ export default function EmailInput({
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                }
+              }}
             />
           </div>
           <Button
-            type="submit"
+            type="button"
             className="w-full bg-primary text-white hover:bg-primary/90"
+            onClick={onSubmit}
           >
             완료
           </Button>
-        </form>
+        </div>
       </CardContent>
     </Card>
   );
