@@ -5,14 +5,4 @@ const api = axios.create({
   timeout: 10000,
 });
 
-api.interceptors.request.use((config) => {
-  const userId = localStorage.getItem('userId');
-
-  if (userId) {
-    config.headers = config.headers || {};
-    config.headers['Authorization'] = `Bearer ${userId}`;
-  }
-  return config;
-});
-
 export default api;

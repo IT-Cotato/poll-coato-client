@@ -3,7 +3,7 @@ import { PATH } from '../path';
 
 export default function UserRoute() {
   const role = localStorage.getItem('role');
-  if (role !== 'User') {
+  if (role !== 'MEMBER') {
     return <Navigate to={PATH.ADMIN} replace />;
   }
   return <Outlet />;
