@@ -6,15 +6,11 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  const email = localStorage.getItem('email');
+  const userId = localStorage.getItem('userId');
 
-  if (token) {
+  if (userId) {
     config.headers = config.headers || {};
-    config.headers['Authorization'] = `Bearer ${token}`;
-  } else if (email) {
-    config.headers = config.headers || {};
-    config.headers['X-User-Email'] = email;
+    config.headers['Authorization'] = `Bearer ${userId}`;
   }
   return config;
 });

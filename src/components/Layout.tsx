@@ -1,14 +1,15 @@
 import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
 export default function Layout() {
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: 24 }}>
-      <header style={{ marginBottom: 32 }}>
-        <h1>My App Layout</h1>
-      </header>
-      <main>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 }
